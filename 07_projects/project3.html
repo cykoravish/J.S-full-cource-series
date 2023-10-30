@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to right, #005aa7, #fffde4);
+        }
+
+        #clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: xx-large;
+            font-weight: 900;
+            width: 40%;
+            height: 20%;
+            background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            border-radius: 5rem;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="clock"></div>
+    </div>
+
+    <script>
+        setInterval(() => {
+            let date = new Date();
+            let time = date.toLocaleTimeString();
+            const clock = (document.getElementById("clock").innerText = time);
+        }, 1000);
+
+    </script>
+</body>
+
+</html>
