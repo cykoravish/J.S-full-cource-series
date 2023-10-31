@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Guessing Game</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            padding-top: 2rem;
+            background-image: linear-gradient(to right, #0099f7, #f11712);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        header h1 {
+            color: white;
+            border-bottom: 2px solid yellow
+        }
+
+        header h3 {
+            color: white;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        main h2 {
+            margin-top: 1rem;
+            font-family: monospace;
+        }
+
+        main input {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            margin: 1rem auto;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        main button {
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            border-radius: 500px;
+            letter-spacing: 2px;
+            min-width: 140px;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 10px 30px;
+            color: #fff;
+            background-color: #1ED760;
+        }
+
+        footer h4 {
+            margin-top: 1rem;
+            color: white;
+            font-size: x-large;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Number Guessing Game</h1>
+            <h3 class="atmpt">you have total 10 attempts</h3>
+        </header>
+        <main>
+            <h2>Guess your Number (1-100)</h2>
+            <input type="number" placeholder="enter number" id="number" value="">
+            <button>submit</button>
+        </main>
+        <footer>
+            <h4>Guesses Numbers: <span id="previousGuesses">xx</span></h4>
+            <h4 class="attempts">Remaining Attempts: <span id="remainingAttempts">10</span></h4>
+            <h4 class="guide"></h4>
+        </footer>
+    </div>
+
+    <script>
+        //generating random number between 1-100
+        let randomNumber = Math.floor(Math.random() * 100 + 1);
+
+        //storing html elements in variables
+        let inputNumber;
+        let button = document.querySelector("button");
+        let previousGuesses = document.getElementById("previousGuesses");
+        let allGuessesArr = [];
+        let guide = document.querySelector(".guide");
+        let remainingAttemptsElem = document.getElementById("remainingAttempts");
+        let remainingAttemptsValue = parseInt(remainingAttemptsElem.innerText);
+        let mainContent = document.querySelector("main");
+        let footer = document.querySelector("footer");
+        let atmpt = document.querySelector(".atmpt");
+
+        //performing action on button click
+        button.addEventListener("click", () => {
+            inputNumber = Number(document.getElementById("number").value);
+
+            if (inputNumber > 100 || inputNumber == "" || inputNumber < 0) {
+                alert("Enter valid number between 1 - 100");
+            } else {
+                if (remainingAttemptsValue > 0) {
+                    guessesStore();
+                    remainingAttempts();
+                    guides();
+                } else {
+                    mainContent.style.display = "none";
+                    footer.style.display = "none";
+                    atmpt.innerText = "YOU LOST! game is over";
+                }
+            }
+        });
+
+        function guessesStore() {
+            allGuessesArr.push(inputNumber);
+            console.log(allGuessesArr);
+            previousGuesses.innerText = allGuessesArr;
+        }
+
+        function remainingAttempts() {
+            remainingAttemptsValue--;
+            remainingAttemptsElem.innerText = remainingAttemptsValue;
+        }
+
+        function guides() {
+            console.log("random number", randomNumber);
+            console.log("input number", inputNumber);
+
+            if (inputNumber > randomNumber) {
+                guide.textContent = "your number is big! Try guessing smaller one";
+            } else if (inputNumber < randomNumber) {
+                guide.textContent = "your number is small! Try guessing bigger one";
+            } else {
+                guide.textContent = `congrats! the correct number is ${randomNumber}`;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
