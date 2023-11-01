@@ -1,2 +1,2 @@
 # JS-series
-Its's a code repo of javaScript topics.
+Here, in this javaScript series i have covered all the useful topics that are important to learn as a javaScript developer from basic to advance.
