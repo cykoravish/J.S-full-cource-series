@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cyko's flirty zone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <h1 id="girlName">Ravisha</h1>
+            <div id="inputFields">
+                <input type="text" placeholder="kya name apka" id="name">
+                <p class="error-message" id="nameError"></p>
+                <button onclick="generateFlirtyMessage()" id="btn">Submit</button>
+            </div>
+        </div>
+        <div class="resultField">
+            <div id="messageContainer"></div>
+            <button onclick="getNextGrl()" id="nextGirl" style="display: none;">NEXT</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
